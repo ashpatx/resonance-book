@@ -1,0 +1,149 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    font-family: 'Arial', sans-serif;
+    flex-direction: column;
+}
+
+.book-container {
+    width: 300px;
+    height: 400px;
+    perspective: 1000px;
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.cover, .back-cover, .page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transition: transform 0.5s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.cover {
+    background-color: #00356B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: gold;
+    z-index: 5;
+}
+
+.back-cover {
+    background-color: #00356B;
+    z-index: 1;
+}
+
+.page {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.upload-btn, .delete-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #00356B;
+}
+
+.upload-btn:hover, .delete-btn:hover {
+    color: #005BB5;
+}
+
+.upload-input {
+    display: none;
+}
+
+.page-content {
+    padding: 20px;
+    text-align: justify;
+    width: 100%;
+    height: calc(100% - 50px);
+    box-sizing: border-box;
+    overflow-y: auto;
+    font-family: 'Dawning of a New Day', cursive;
+    font-size: 24px;
+    line-height: 1.6;
+}
+
+.page-content h2 {
+    font-family: 'Arial', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.page-content:focus {
+    outline: none;
+}
+
+.page-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+.controls {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #00356B;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005BB5;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+@keyframes tear {
+    0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+    100% { clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%); }
+}
+
+.tearing {
+    animation: tear 0.5s forwards;
+}
+

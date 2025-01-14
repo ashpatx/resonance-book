@@ -1,234 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tagore Quotes</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Caveat&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-
-      /* page container */
-      body {
-        margin: 0;
-        display: flex;
-        min-height: 100dvh;
-        perspective: 1000px;
-        font: 1em/1.4 "Cormorant Garamond", serif;
-        overflow: hidden;
-        background-color: #f5f5f5;
-        color: #000;
-        background-image: url("https://images.unsplash.com/photo-1532153259564-a5f24f261f51?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-      }
-
-      .book {
-        position: relative;
-        display: flex;
-        margin: auto;
-        width: 40cqmin;
-        pointer-events: none;
-        transform-style: preserve-3d;
-        transition: translate 1s;
-        translate: calc(min(var(--c), 1) * 50%) 0%;
-      }
-
-      /* page style */
-      .page {
-        --thickness: 4;
-        flex: none;
-        display: flex;
-        width: 100%;
-        font-size: 2cqmin;
-        pointer-events: all;
-        user-select: none;
-        transform-style: preserve-3d;
-        transform-origin: left center;
-        transition: transform 1s,
-          rotate 1s ease-in
-            calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
-        translate: calc(var(--i) * -100%) 0px 0px;
-        transform: translateZ(
-          calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin))
-        );
-        rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
-      }
-
-      /* front and back page style */
-      .front,
-      .back {
-        position: relative;
-        flex: none;
-        width: 100%;
-        backface-visibility: hidden;
-        overflow: hidden;
-        background-color: #f5f5f5;
-        translate: 0px;
-      }
-
-      .back {
-        translate: -100% 0;
-        rotate: 0 1 0 180deg;
-      }
-
-      /* Custom styling for pages */
-      .book {
-        counter-reset: page -1;
-      }
-
-      .page {
-        box-shadow: 0em 0.5em 1em -0.2em #00000020;
-      }
-
-      .front,
-      .back {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-        padding: 2em;
-        border: 1px solid #b2b2b2;
-        /* Styling for images */
-        &:has(img) {
-          padding: 0;
-        }
-
-        & img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        &::after {
-          content: "";
-        }
-      }
-
-      .cover {
-        &::after {
-          content: "";
-        }
-      }
-
-      /* front page */
-      .front {
-        background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
-        border-radius: 0.1em 0.5em 0.5em 0.1em;
-      }
-
-      /* back page */
-      .back {
-        background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
-        border-radius: 0.5em 0.1em 0.1em 0.5em;
-      }
-
-      .cover {
-        background-image: url("https://tagorecentre.org.uk/wp-content/uploads/2023/06/e65ce-bp1_tagore_img4.jpg");
-        color: rgb(252, 242, 178);
-        padding-top: 85%;
-      }
-
-      .text-deco {
-  text-decoration: none;
-  color:#FF00BF;
-}
-    </style>
-  </head>
-  <body>
-    <div class="book">
-      <div class="page">
-        <div class="front cover">
-          <p>Image Source:<br />Tagore Centre UK</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Book with Image Upload</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dawning+of+a+New+Day&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="book-container">
+        <div class="book">
+            <div class="cover">My Interactive Book</div>
+            <div class="page" id="page1">
+                <div class="page-header">
+                    <label for="upload1" class="upload-btn"><i class="fas fa-upload"></i></label>
+                    <input type="file" id="upload1" class="upload-input" accept="image/*">
+                    <button class="delete-btn" aria-label="Delete page content"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="page-content" contenteditable="true">
+                    <h2>Chapter 1</h2>
+                    <p>Once upon a time...</p>
+                </div>
+            </div>
+            <div class="page" id="page2">
+                <div class="page-header">
+                    <label for="upload2" class="upload-btn"><i class="fas fa-upload"></i></label>
+                    <input type="file" id="upload2" class="upload-input" accept="image/*">
+                    <button class="delete-btn" aria-label="Delete page content"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="page-content" contenteditable="true">
+                    <h2>Chapter 2</h2>
+                    <p>The adventure continues...</p>
+                </div>
+            </div>
+            <div class="page" id="page3">
+                <div class="page-header">
+                    <label for="upload3" class="upload-btn"><i class="fas fa-upload"></i></label>
+                    <input type="file" id="upload3" class="upload-input" accept="image/*">
+                    <button class="delete-btn" aria-label="Delete page content"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="page-content" contenteditable="true">
+                    <h2>Chapter 3</h2>
+                    <p>A twist in the tale...</p>
+                </div>
+            </div>
+            <div class="page" id="page4">
+                <div class="page-header">
+                    <label for="upload4" class="upload-btn"><i class="fas fa-upload"></i></label>
+                    <input type="file" id="upload4" class="upload-input" accept="image/*">
+                    <button class="delete-btn" aria-label="Delete page content"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="page-content" contenteditable="true">
+                    <h2>The End</h2>
+                    <p>And they lived happily ever after.</p>
+                </div>
+            </div>
+            <div class="back-cover"></div>
         </div>
-        <div class="back">
-          <img
-            src="https://live.staticflickr.com/65535/53081866669_898d7b8bbc_b.jpg"
-            alt="Image of steps leading to a window"
-          />
-        </div>
-      </div>
-
-      <div class="page">
-        <div class="front">
-            <h4>The Grasp of Your Hand</h4>
-            <p>
-              Let me not pray to be sheltered from dangers but to be fearless in
-              facing them.<br />Let me not beg for the stilling of my pain but for
-              the heart to conquer it.<br />Let me not crave in anxious fear to be
-              saved but hope for the patience to win my freedom.<br />Grant me
-              that I may not be a coward, feeling<br />Your mercy in my success
-              alone; but let me find the grasp of Your hand in my failure.
-            </p>
-            <p>-Rabindranath Tagore</p>
-        </div>
-        <div class="back">
-          <img
-            src="https://live.staticflickr.com/65535/53079752146_2af85be73f_k.jpg"
-            alt="Image of a large tree with many branches"
-          />
-        </div>
-      </div>
-
-      <div class="page">
-        <div class="front">
-          <h4>Poem from Gitanjali (37)</h4>
-          <p>
-            I thought that my voyage had come to its end at the last limit of my power,<br>—that the path before me was closed, that provisions were exhausted and the time come to take shelter in a silent obscurity.<br>But I find that thy will knows no end in me.<br>And when old words die out on the tongue, new melodies break forth from the heart; and where the old tracks are lost, new country is revealed with its wonders.
-          </p>
-          <p>-Rabindranath Tagore</p>
-        </div>
-        <div class="back">
-          <img
-            src="https://live.staticflickr.com/65535/53079954174_b2ee01edf3_b.jpg"
-            alt="Image of sandy desert horizon"
-          />
-        </div>
-      </div>
-
-      <div class="page">
-        <div class="front">
-          <h4>Poem from Gitanjali (81)</h4>
-          <p>
-            On many an idle day have I grieved over lost time.<br>But it is never lost, my lord.<br>Thou hast taken every moment of my life in thine own hands.<br>Hidden in the heart of things thou art nourishing seeds into sprouts, buds into blossoms, and ripening flowers into fruitfulness.<br>I was tired and sleeping on my idle bed and imagined all work had ceased.<br>In the morning I woke up and found my garden full with wonders of flowers.</p>
-          <p>-Rabindranath Tagore</p>
-        </div>
-        <div class="back">
-          <p>
-            It might take me a lifetime to explore Tagore's full body of work (poems and paint)! Gutenberg is a wonderful home to most of it and a great place to start.</p>
-            <p>I'll be<a href="https://www.gutenberg.org/ebooks/author/942" target="_blank" class="text-deco"> here</a> for a bit.</p>
-        </div>
-      </div>
-
-      <div class="page">
-        <div class="front">
-            <a href="https://www.vam.ac.uk/articles/rabindranath-tagore-poet-and-painter?srsltid=AfmBOoqcHdutLGKqhMfcCneTXFAL6cq5w8_yGD7WSuePJ3W0HdpXe0jh" target="_blank">
-          <img
-            src="https://assets-cdn.vam.ac.uk/2021/11/04/12/54/51/15042228-3531-46dc-be08-c27c54fa55ad/1280.jpg"
-            alt="Image of a Drawing Landscape made by Tagore, 1930-1940, now at V/A Museum"
-          />
-        </div>
-        <div class="back cover"></div>
-      </div>
     </div>
-
-    <script>
-      const pageFlip = (quoteBook) => {
-        quoteBook.style.setProperty("--c", 0); // Set current page
-        quoteBook.querySelectorAll(".page").forEach((page, idx) => {
-          page.style.setProperty("--i", idx);
-          page.addEventListener("click", (evt) => {
-            if (evt.target.closest("a")) return; // Prevent navigating on link click
-            const curr = evt.target.closest(".back") ? idx : idx + 1;
-            quoteBook.style.setProperty("--c", curr);
-          });
-        });
-      };
-
-      document.querySelectorAll(".book").forEach(pageFlip);
-    </script>
-  </body>
+    <div class="controls">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>
+
